@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">recyclerviewaula</string>
+    <string name="toolbar_title">App Todo</string>
+</resources>
