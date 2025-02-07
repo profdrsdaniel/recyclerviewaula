@@ -3,7 +3,7 @@ package com.example.recyclerviewaula.data
 import com.example.recyclerviewaula.data.model.Todo
 
 class TodoRepository {
-    val todoList = listOf(
+    val todoList = mutableListOf(
         Todo(
             1,
             "Comprar leite",

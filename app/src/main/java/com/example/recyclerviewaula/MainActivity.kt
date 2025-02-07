@@ -1,52 +1,35 @@
 package com.example.recyclerviewaula
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.RecyclerView
-import com.example.recyclerviewaula.data.TodoRepository
-import com.example.recyclerviewaula.data.model.Todo
-import com.example.recyclerviewaula.ui.adapter.TodoAdapter
-import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.NavController
+import androidx.navigation.NavHost
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 
 class MainActivity : AppCompatActivity() {
-    private val repository = TodoRepository()
-    private lateinit var adapter: TodoAdapter
+    private lateinit var navController: NavController
+    private lateinit var navHost: NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        val rc = findViewById<RecyclerView>(R.id.recyclerView)
-        adapter = TodoAdapter(
-            onDelete = { todo ->
-                deleteTodo(rc, todo)
-            },
-            onDetails = { todo ->
-                goToDetails(todo = todo)
-            }
-        )
-        rc.adapter = adapter
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-        adapter.submitList(repository.todoList)
+        navHost = supportFragmentManager.findFragmentById(R.id.nav_host_container) as NavHostFragment
+        navController = navHost.navController
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+
+        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
-    private fun deleteTodo(recyclerView: RecyclerView, todo: Todo) {
-        val newList = repository.todoList.toMutableList()
-        newList.remove(todo)
-        adapter.submitList(newList)
-
-        Snackbar.make(this, recyclerView, "Deletado com Sucesso", Snackbar.LENGTH_LONG).show()
-    }
-
-    private fun goToDetails(todo: Todo) {
-        val intent = Intent(this, DetailsActivity::class.java).apply {
-            this.putExtras(bundleOf("todo" to todo))
-        }
-        startActivity(intent)
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }
