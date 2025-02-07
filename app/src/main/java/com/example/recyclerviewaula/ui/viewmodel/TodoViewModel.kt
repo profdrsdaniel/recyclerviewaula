@@ -22,4 +22,11 @@ class TodoViewModel : ViewModel() {
 
         _todolist.value = newList.toList()
     }
+
+    fun checkTodo(todo: Todo) {
+        repository.getTodos().replaceAll {
+            if (it.id == todo.id) it.copy(check = todo.check)
+            else it
+        }
+    }
 }

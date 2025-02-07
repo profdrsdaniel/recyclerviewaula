@@ -1,29 +1,28 @@
 package com.example.recyclerviewaula.ui.fragments
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
-import com.example.recyclerviewaula.databinding.FragmentDetailsTodoBinding
+import com.example.recyclerviewaula.R
+import com.example.recyclerviewaula.databinding.FragmentFormTodoBinding
 
-class DetailsTodoFragment : Fragment() {
-    private lateinit var binding: FragmentDetailsTodoBinding
-    val args: DetailsTodoFragmentArgs by navArgs()
+class FormTodoFragment : Fragment() {
+    private lateinit var binding: FragmentFormTodoBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentDetailsTodoBinding.inflate(inflater, container, false)
+         binding = FragmentFormTodoBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val todoArgs = args.todo
-        binding.todo = todoArgs
     }
 }

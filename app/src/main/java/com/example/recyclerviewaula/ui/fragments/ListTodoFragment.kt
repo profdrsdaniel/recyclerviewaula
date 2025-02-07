@@ -10,36 +10,41 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerviewaula.R
 import com.example.recyclerviewaula.data.model.Todo
+import com.example.recyclerviewaula.databinding.FragmentListTodoBinding
 import com.example.recyclerviewaula.ui.adapter.TodoAdapter
 import com.example.recyclerviewaula.ui.viewmodel.TodoViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class ListTodoFragment : Fragment() {
-
+    private lateinit var binding: FragmentListTodoBinding
     private lateinit var adapter: TodoAdapter
     private val todoViewModel: TodoViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         todoViewModel.todolist.observe(viewLifecycleOwner) { todo ->
             adapter.submitList(todo.toMutableList())
         }
 
-        return inflater.inflate(R.layout.fragment_list_todo, container, false)
+        binding = FragmentListTodoBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val rc = view.findViewById<RecyclerView>(R.id.recyclerView)
+        val rc = binding.recyclerView
         adapter = TodoAdapter(
             onDelete = { todo ->
                 todoViewModel.deleteTodo(todo)
             },
             onDetails = { todo ->
                 goToDetails(todo = todo)
+            },
+            onCheck = { todo ->
+                todoViewModel.checkTodo(todo)
             }
         )
         rc.adapter = adapter
