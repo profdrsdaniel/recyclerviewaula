@@ -38,16 +38,21 @@ class ListTodoFragment : Fragment() {
         val rc = binding.recyclerView
         adapter = TodoAdapter(
             onDelete = { todo ->
-                todoViewModel.deleteTodo(todo)
+                todoViewModel.removeTodo(todo)
             },
             onDetails = { todo ->
                 goToDetails(todo = todo)
             },
             onCheck = { todo ->
-                todoViewModel.checkTodo(todo)
+                todoViewModel.checkTodo(todoId = todo.id, isCheck = !todo.check)
             }
         )
         rc.adapter = adapter
+
+        binding.fabAdd.setOnClickListener {
+            val action = ListTodoFragmentDirections.actionListTodoFragmentToFormTodoFragment()
+            findNavController().navigate(action)
+        }
     }
 
     private fun goToDetails(todo: Todo) {

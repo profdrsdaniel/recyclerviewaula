@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_listTodoFragment_to_detailsTodoFragment"
             app:destination="@id/detailsTodoFragment" />
+        <action
+            android:id="@+id/action_listTodoFragment_to_formTodoFragment"
+            app:destination="@id/formTodoFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsTodoFragment"
@@ -24,5 +27,13 @@
         <argument
             android:name="todo"
             app:argType="com.example.recyclerviewaula.data.model.Todo" />
+    </fragment>
+    <fragment
+        android:id="@+id/formTodoFragment"
+        android:name="com.example.recyclerviewaula.ui.fragments.FormTodoFragment"
+        android:label="Add Todo" >
+        <action
+            android:id="@+id/action_formTodoFragment_to_listTodoFragment"
+            app:destination="@id/listTodoFragment" />
     </fragment>
 </navigation>

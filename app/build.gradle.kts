@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.androidx.navigation.safe.args)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -41,6 +42,11 @@ android {
 }
 
 dependencies {
+    implementation(libs.lifecycle.livedata)
+    implementation(libs.room.runtime)
+    ksp(libs.room.compiler)
+    annotationProcessor(libs.room.compiler)
+    implementation(libs.room.ktx)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.serialization)
