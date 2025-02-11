@@ -10,7 +10,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.recyclerviewaula.data.model.Todo
 import com.example.recyclerviewaula.databinding.FragmentFormTodoBinding
 import com.example.recyclerviewaula.ui.viewmodel.TodoViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FormTodoFragment : Fragment() {
     private lateinit var binding: FragmentFormTodoBinding
     private val todoViewModel: TodoViewModel by viewModels()

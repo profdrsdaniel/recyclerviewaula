@@ -1,26 +1,21 @@
 package com.example.recyclerviewaula.ui.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.recyclerviewaula.data.TodoRepository
-import com.example.recyclerviewaula.data.local.TodoLocalDataSource
-import com.example.recyclerviewaula.data.local.database.AppDatabase
 import com.example.recyclerviewaula.data.model.Todo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TodoViewModel(application: Application) : AndroidViewModel(application) {
-    // TODO está da pior forma até a próxima aula
-    private val todoDao = AppDatabase.getInstance(application).todoDao()
-    private val localDataSource = TodoLocalDataSource(todoDao)
-    private val repository = TodoRepository(localDataSource)
-
-    private val _todolist = repository.getAllTodos().asLiveData()
+@HiltViewModel
+class TodoViewModel @Inject constructor(
+    private val repository: TodoRepository
+) : ViewModel() {
+    private var _todolist = repository.getAllTodos().asLiveData()
     val todolist: LiveData<List<Todo>> = _todolist
 
     init {

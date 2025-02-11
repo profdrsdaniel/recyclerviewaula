@@ -3,8 +3,9 @@ package com.example.recyclerviewaula.data.local
 import com.example.recyclerviewaula.data.local.dao.TodoDao
 import com.example.recyclerviewaula.data.local.entities.TodoEntity
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class TodoLocalDataSource(private val todoDao: TodoDao) {
+class TodoLocalDataSource @Inject constructor(private val todoDao: TodoDao) {
     fun getAllTodos(): Flow<List<TodoEntity>> = todoDao.getAllTodos()
 
     suspend fun addTodo(todo: TodoEntity) {

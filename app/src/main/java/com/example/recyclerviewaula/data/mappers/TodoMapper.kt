@@ -5,6 +5,7 @@ import com.example.recyclerviewaula.data.model.Todo
 
 fun Todo.convertToEntity() =
     TodoEntity(
+        id = this.id,
         title = this.title,
         taskDescription = this.taskDescription,
         createdAt = this.createdAt,

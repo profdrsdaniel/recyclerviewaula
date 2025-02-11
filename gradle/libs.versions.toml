@@ -13,6 +13,7 @@ nav-version = "2.8.6"
 json-serialization = "1.7.3"
 room = "2.6.1"
 livedata-lifecycle = "2.7.0"
+hilt-version = "2.51.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -30,10 +31,13 @@ room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 lifecycle-livedata = { group = "androidx.lifecycle", name="lifecycle-livedata-ktx", version.ref = "livedata-lifecycle" }
+hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt-version" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt-version" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 androidx-navigation-safe-args = { id = "androidx.navigation.safeargs.kotlin", version.ref = "nav-version" }
 ksp = { id = "com.google.devtools.ksp", version = "2.0.20-1.0.24" }
+hilt-dagger = { id = "com.google.dagger.hilt.android", version.ref = "hilt-version" }
 

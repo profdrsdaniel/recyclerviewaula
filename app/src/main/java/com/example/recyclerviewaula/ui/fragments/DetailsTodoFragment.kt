@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.recyclerviewaula.databinding.FragmentDetailsTodoBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailsTodoFragment : Fragment() {
     private lateinit var binding: FragmentDetailsTodoBinding
     val args: DetailsTodoFragmentArgs by navArgs()

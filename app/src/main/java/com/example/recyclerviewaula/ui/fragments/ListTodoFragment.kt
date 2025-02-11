@@ -14,7 +14,9 @@ import com.example.recyclerviewaula.databinding.FragmentListTodoBinding
 import com.example.recyclerviewaula.ui.adapter.TodoAdapter
 import com.example.recyclerviewaula.ui.viewmodel.TodoViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ListTodoFragment : Fragment() {
     private lateinit var binding: FragmentListTodoBinding
     private lateinit var adapter: TodoAdapter
